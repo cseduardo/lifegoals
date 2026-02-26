@@ -1,0 +1,44 @@
+<!-- <div class="card">
+  <h2>¿Cuáles son tus metas en la vida?</h2>
+  
+  <div class="input-group">
+    <input 
+      type="text" 
+      [(ngModel)]="nuevaMeta" 
+      placeholder="Escribe una nueva meta (ej. Aprender Angular)..."
+      (keyup.enter)="agregarMeta()"
+    >
+    <button class="btn-primary" (click)="agregarMeta()">Agregar</button>
+  </div>
+
+  <ul class="lista-metas">
+    <li *ngFor="let m of metas$ | async">
+      <span class="texto-meta">{{ m.meta }}</span>
+      <button class="btn-danger" (click)="eliminarMeta(m.id)">Eliminar</button>
+    </li>
+  </ul>
+</div> -->
+<div class="card">
+  <h2>¿Cuáles son tus metas en la vida?</h2>
+  
+  <div class="input-group">
+    <input 
+      type="text" 
+      [(ngModel)]="nuevaMeta" 
+      placeholder="Escribe una nueva meta (ej. Aprender Angular)..."
+      (keyup.enter)="agregarMeta()"
+    >
+    <button class="btn-primary" (click)="agregarMeta()">Agregar</button>
+  </div>
+
+  <ul class="lista-metas">
+    @for (m of metas$ | async; track m.id) {
+      <li>
+        <span class="texto-meta">{{ m.meta }}</span>
+        <button class="btn-danger" (click)="eliminarMeta(m.id)">Eliminar</button>
+      </li>
+    } @empty {
+      <li>Cargando metas o no hay metas aún...</li>
+    }
+  </ul>
+</div>
