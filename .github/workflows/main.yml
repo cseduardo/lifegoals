@@ -12,11 +12,16 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v3
 
-      - name: Generar archivo environment.ts
+      - name: Create environment file
         run: |
-          mkdir -p src/environments
-          echo "${{ secrets.ENV_PROD_FILE }}" > src/environments/environment.ts
-          echo "${{ secrets.ENV_PROD_FILE }}" > src/environments/environment.development.ts
+            mkdir -p src/environments
+            cat <<EOF > src/environments/environment.development.ts
+            cat <<EOF > src/environments/environment.ts
+            export const environment = {
+              production: true,
+              firebase: ${{ secrets.FIREBASE_CONFIG }}
+            };
+            EOF
 
       - name: Iniciar sesión en Docker Hub
         uses: docker/login-action@v2
