@@ -12,6 +12,12 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v3
 
+      - name: Generar archivo environment.ts
+        run: |
+          mkdir -p src/environments
+          echo "${{ secrets.ENV_PROD_FILE }}" > src/environments/environment.ts
+          echo "${{ secrets.ENV_PROD_FILE }}" > src/environments/environment.development.ts
+
       - name: Iniciar sesión en Docker Hub
         uses: docker/login-action@v2
         with:
