@@ -18,7 +18,7 @@ jobs:
             cat <<EOF > src/environments/environment.ts
             export const environment = {
               production: true,
-              firebase:{ ${{ secrets.FIREBASE_CONFIG }}
+              firebase: ${{ secrets.FIREBASE_CONFIG }}
             };
             EOF
 
